@@ -8,6 +8,14 @@ const Surveys = {
   create: async (req, res) => {
     const newSurvey = await Survey.create(req.body.params)
     res.json({ survey: newSurvey })
+  },
+  delete: async (req, res) => {
+    try {
+      const query = await Survey.deleteOne({ _id: req.params.surveyId });
+      res.json({ status: 200 })
+    } catch(error) {
+      res.json({ status: error.status })
+    }
   }
 }
 

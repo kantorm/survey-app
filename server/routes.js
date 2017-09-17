@@ -8,4 +8,7 @@ router.route('/surveys')
   .post(Surveys.create)
   .get(Surveys.index)
 
+router.route('/surveys/:surveyId')
+  .delete(Surveys.delete);
+
 export default router

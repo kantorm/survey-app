@@ -11,13 +11,22 @@ const addSurvey = (survey) => ({
   payload: survey
 });
 
+const removeSurvey = (surveyId) => ({
+  type: types.REMOVE_SURVEY,
+  payload: surveyId
+})
+
 export const getSurveys = () => (dispatch) => {
   axios.get("http://localhost:8080/v1/surveys")
-    .then((response) => dispatch(setSurveys(response.data.groups)))
+    .then((response) => dispatch(setSurveys(response.data.surveys)))
 }
 
 export const createSurvey = (params) => (dispatch) => {
-  debugger;
   axios.post("http://localhost:8080/v1/surveys", { params })
     .then((response) => dispatch(addSurvey(response.data.survey)))
+}
+
+export const deleteSurvey = (surveyId) => (dispatch) => {
+  axios.delete(`http://localhost:8080/v1/surveys/${surveyId}`)
+    .then(() => dispatch(removeSurvey(surveyId)))
 }
