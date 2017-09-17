@@ -7,6 +7,7 @@ const NewSurvey = props => {
   const { handleSubmit, reset } = props;
   return (
     <form onSubmit={handleSubmit}>
+      <h2 className='mdc-typography--headline'>Survey Form</h2>
       <Field
         name="surveyName"
         type="text"
@@ -15,10 +16,10 @@ const NewSurvey = props => {
       />
       <FieldArray name="questions" component={QuestionForm} />
       <div>
-        <button type="submit">
+        <button type="submit" className='mdc-button mdc-button--raised mdc-button--primary'>
           Submit
         </button>
-        <button type="button" onClick={reset}>
+        <button type="button" className='mdc-button mdc-button--raised' onClick={reset}>
           Clear Values
         </button>
       </div>

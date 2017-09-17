@@ -7,18 +7,21 @@ import AnswerOptionForm from './AnswerOptionForm'
 export default ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => fields.push({})}>
+      <button className='mdc-button  mdc-button--raised' type="button" onClick={() => fields.push({})}>
         Add Question
       </button>
     </li>
     {fields.map((question, index) => (
       <li key={index}>
         <button
+          className='mdc-button mdc-button--raised'
           type="button"
           title="Remove Question"
           onClick={() => fields.remove(index)}
-        />
-        <h4>Question #{index + 1}</h4>
+        >
+          Remove
+        </button>
+        <h4 className='mdc-typography--headline'>Question #{index + 1}</h4>
         <Field
           name={`${question}.questionName`}
           type="text"
@@ -29,8 +32,9 @@ export default ({ fields }) => (
           name={`${question}.fieldType`}
           component="select"
           label="Last Name"
+          className='mdc-select'
         >
-          <option />
+          <option value="" selected>Field type</option>
           <option value='text'>text</option>
           <option value='checkbox'>checkbox</option>
           <option value='radio'>radio</option>

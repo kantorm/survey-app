@@ -6,17 +6,20 @@ import renderField from '../shared/renderField'
 export default ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => fields.push()}>
+      <button type="button" className='mdc-button mdc-button--raised' onClick={() => fields.push()}>
         Add Answer Option
       </button>
     </li>
     {fields.map((answerOption, index) => (
       <li key={index}>
         <button
+          className='mdc-button mdc-button--raised'
           type="button"
-          title="Remove Hobby"
+          title="Remove Answer Option"
           onClick={() => fields.remove(index)}
-        />
+        >
+          Remove
+        </button>
         <Field
           name={answerOption}
           type="text"
