@@ -1,7 +1,9 @@
 import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
+
 import QuestionForm from './QuestionForm'
 import renderField from '../shared/renderField'
+import { createSurvey } from '../../store/surveys/actions'
 
 const NewSurvey = props => {
   const { handleSubmit, reset } = props;
@@ -9,7 +11,7 @@ const NewSurvey = props => {
     <form onSubmit={handleSubmit}>
       <h2 className='mdc-typography--headline'>Survey Form</h2>
       <Field
-        name="surveyName"
+        name="name"
         type="text"
         component={renderField}
         label="Survey Name"
@@ -29,5 +31,5 @@ const NewSurvey = props => {
 
 export default reduxForm({
   form: "survey",
-  onSubmit: (values) => console.log(values)
+  onSubmit: (values, dispatch) => dispatch(createSurvey(values))
 })(NewSurvey);

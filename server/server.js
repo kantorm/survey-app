@@ -20,7 +20,7 @@ app.use(morgan("combined"));
 // Use v1 as prefix for all API endpoints
 app.use("/v1", router);
 
-const server = app.listen(3000, () => {
+const server = app.listen(8080, () => {
   const { address, port } = server.address();
   console.info(`Listening at http://${address}:${port}`);
 });
