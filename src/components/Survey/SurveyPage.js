@@ -10,11 +10,28 @@ class SurveyPage extends Component {
     survey: PropTypes.object,
   }
 
+  renderQuestions = () => (
+    this.props.survey.questions.map((question, questionIndex) => (
+      <div>
+        <h3>{question.name}</h3>
+        {question.answerOptions.map((answerOption) => (
+          <div>
+            <input type={question.fieldType} name={`question${questionIndex}`} />
+            <label>{answerOption}</label>
+          </div>
+        ))}
+      </div>
+    ))
+  )
+
   render() {
     if (isEmpty(this.props.survey)) return <div>Loading...</div>
     return (
       <div>
         <h1>{this.props.survey.name}</h1>
+        <form>
+          {this.renderQuestions()}
+        </form>
       </div>
     )
   }
