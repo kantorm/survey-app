@@ -1,11 +1,33 @@
-import React, { Component } from 'react'
+import React from "react";
+import { Field, FieldArray, reduxForm } from "redux-form";
+import QuestionForm from './QuestionForm'
+import renderField from '../shared/renderField'
 
-export default class NewSurvey extends Component {
-  render() {
-    return (
+const NewSurvey = props => {
+  const { handleSubmit, reset } = props;
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2 className='mdc-typography--headline'>Survey Form</h2>
+      <Field
+        name="surveyName"
+        type="text"
+        component={renderField}
+        label="Survey Name"
+      />
+      <FieldArray name="questions" component={QuestionForm} />
       <div>
-        NewSurvey
+        <button type="submit" className='mdc-button mdc-button--raised mdc-button--primary'>
+          Submit
+        </button>
+        <button type="button" className='mdc-button mdc-button--raised' onClick={reset}>
+          Clear Values
+        </button>
       </div>
-    )
-  }
-}
+    </form>
+  );
+};
+
+export default reduxForm({
+  form: "survey",
+  onSubmit: (values) => console.log(values)
+})(NewSurvey);
